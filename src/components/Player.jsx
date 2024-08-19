@@ -3,7 +3,7 @@ import { assets } from "../assets/assets";
 
 const Player = () => {
   return (
-    <section className="col-span-2 flex flex-col items-center gap-2 w-full">
+    <section className="col-span-2 flex flex-col items-center justify-center gap-2 pt-1 pb-1 w-full">
       <div className="flex gap-6 items-center justify-center h-fit">
         <img
           src={assets.shuffle_icon}

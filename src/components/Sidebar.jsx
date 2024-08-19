@@ -4,7 +4,7 @@ import SidebarLibrary from "./SidebarLibrary";
 
 const Sidebar = () => {
   return (
-    <section className="sticky inset-0 bottom-0 h-[calc(100vh-95px)] max-w-[420px] min-w-[420px] flex flex-col gap-2 m-2">
+    <section className="sticky inset-2 bottom-0 h-[calc(100vh-95px)] max-w-[420px] min-w-[420px] flex flex-col gap-2 m-2">
       <div className=" bg-white/10 p-2 rounded-lg">
         <div className="flex w-fit gap-5 items-center px-4 py-3 font-bold">
           <img src={assets.home_icon} alt="home icon" className="w-6" />

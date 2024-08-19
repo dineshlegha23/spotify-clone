@@ -6,7 +6,7 @@ import PlayerExtraControllers from "./PlayerExtraControllers";
 
 const PlayerBar = () => {
   return (
-    <div className="fixed bottom-0 right-0 left-0 bg-black text-white w-100vw h-20 grid grid-cols-4 px-1 py-[6px] pb-5 pt-2">
+    <div className="fixed bottom-0 right-0 left-0 bg-black text-white w-100vw h-fit grid grid-cols-4 px-1 pt-3 pb-3">
       <div className="flex gap-4 text-sm items-center">
         <img src={song1} alt="song image" className="w-14 rounded-lg ml-3" />
         <div>
