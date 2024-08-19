@@ -1,11 +1,13 @@
-import Sidebar from "./components/Sidebar"
+import PlayerBar from "./components/PlayerBar";
+import Sidebar from "./components/Sidebar";
 
 function App() {
   return (
-    <div className="p-2">
-    <Sidebar/>
+    <div className="text-white">
+      <Sidebar />
+      <PlayerBar />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
