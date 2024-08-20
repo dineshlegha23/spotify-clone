@@ -138,7 +138,7 @@ export const songsData = [
     file: song1,
     album: "Retro Music",
     singers: "Arijit Singh, Honey Singh",
-    duration: "3:00",
+    duration: "3:29",
   },
   {
     id: 1,
@@ -156,7 +156,7 @@ export const songsData = [
     file: song3,
     album: "Retro Music",
     singers: "Arijit Singh, Honey Singh",
-    duration: "2:32",
+    duration: "3:58",
   },
   {
     id: 3,
@@ -165,7 +165,7 @@ export const songsData = [
     file: song1,
     album: "Retro Music",
     singers: "Arijit Singh, Honey Singh",
-    duration: "2:50",
+    duration: "3:28",
   },
   {
     id: 4,

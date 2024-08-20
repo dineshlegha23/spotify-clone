@@ -6,8 +6,20 @@ export const PlayerContext = createContext();
 export const PlayerContextProvider = ({ children }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentSong, setCurrentSong] = useState(songsData[0]);
+  const [time, setTime] = useState({
+    currentTime: {
+      minutes: 0,
+      seconds: "00",
+    },
+    totalTime: {
+      minutes: 0,
+      seconds: 0,
+    },
+  });
+
   const audioRef = useRef();
-  const data = "data1";
+  const seekBarRef = useRef();
+  console.log(seekBarRef);
 
   const playSong = (file) => {
     audioRef.current.play();
@@ -44,14 +56,41 @@ export const PlayerContextProvider = ({ children }) => {
     setCurrentSong(songsData[currentSong.id + 1]);
   };
 
+  const setSeekBar = (e) => {
+    console.log(e);
+  };
+
   useEffect(() => {
     audioRef.current.src = songsData[0].file;
   }, []);
 
+  useEffect(() => {
+    let interval;
+    interval = setInterval(() => {
+      if (!isPlaying) {
+        clearInterval(interval);
+        return;
+      }
+      const currentSeconds = String(
+        Math.ceil(audioRef.current.currentTime % 60)
+      ).padStart(2, "0");
+      const currentMinutes = Math.floor(audioRef.current.currentTime / 60);
+
+      const totalSeconds = String(
+        Math.ceil(audioRef.current.duration % 60)
+      ).padStart(2, "0");
+      const totalMinutes = Math.floor(audioRef.current.duration / 60);
+      setTime({
+        currentTime: { minutes: currentMinutes, seconds: currentSeconds },
+        totalTime: { minutes: totalMinutes, seconds: totalSeconds },
+      });
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [isPlaying]);
+
   return (
     <PlayerContext.Provider
       value={{
-        data,
         audioRef,
         playSong,
         playPrevious,
@@ -61,6 +100,9 @@ export const PlayerContextProvider = ({ children }) => {
         pauseSong,
         setIsPlaying,
         playWithSource,
+        seekBarRef,
+        time,
+        setSeekBar,
       }}
     >
       {children}

@@ -11,7 +11,15 @@ const Player = () => {
     playNext,
     isPlaying,
     pauseSong,
+    currentSong,
+    time,
+    seekBarRef,
+    setSeekBar,
   } = usePlyerContext();
+
+  const progressBar = Math.ceil(
+    (audioRef?.current?.currentTime / audioRef?.current?.duration) * 100
+  );
 
   return (
     <section className="col-span-2 flex flex-col items-center justify-center gap-2 pt-1 pb-1 w-full">
@@ -61,11 +69,20 @@ const Player = () => {
       </div>
 
       <div className="flex items-center gap-2 text-xs text-white/70 font-semibold">
-        <p>0:00</p>
-        <div className="w-[515px] bg-zinc-700 h-1 rounded-sm">
-          <div className="w-[50%] bg-white h-full rounded-sm"></div>
+        <p className="max-w-5">
+          {time?.currentTime.minutes}:{time?.currentTime.seconds}
+        </p>
+        <div
+          onClick={(e) => setSeekBar(e)}
+          ref={seekBarRef}
+          className="w-[515px] bg-zinc-700 h-1 rounded-sm"
+        >
+          <div
+            style={{ width: `${progressBar}%` }}
+            className="bg-white h-full rounded-sm"
+          ></div>
         </div>
-        <p>4:24</p>
+        <p>{currentSong?.duration}</p>
       </div>
     </section>
   );
