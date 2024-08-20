@@ -1,6 +1,7 @@
 import React from "react";
 import { assets } from "../assets/assets";
 import SidebarLibrary from "./SidebarLibrary";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   return (
@@ -8,7 +9,7 @@ const Sidebar = () => {
       <div className=" bg-white/10 p-2 rounded-lg">
         <div className="flex w-fit gap-5 items-center px-4 py-3 font-bold">
           <img src={assets.home_icon} alt="home icon" className="w-6" />
-          <h2>Home</h2>
+          <NavLink to={"/"}>Home</NavLink>
         </div>
         <div className="flex w-fit gap-5 items-center px-4 py-3 font-bold">
           <img src={assets.search_icon} alt="search icon" className="w-6" />

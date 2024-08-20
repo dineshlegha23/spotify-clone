@@ -6,7 +6,7 @@ import PlaylistPage from "../pages/PlaylistPage";
 
 const MainSection = () => {
   return (
-    <div className="w-[calc(100%-445px)] my-2 mb-16 mr-2 bg-white/10 rounded-lg px-[18px] py-4">
+    <div className="sticky inset-0 w-[calc(100%-445px)] h-fit my-2 mb-28 mr-2 bg-white/10 rounded-lg px-[18px] py-4">
       <Header />
 
       <Routes>
