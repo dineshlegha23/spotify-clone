@@ -6,15 +6,34 @@ import { NavLink } from "react-router-dom";
 const Sidebar = () => {
   return (
     <section className="sticky inset-2 bottom-0 h-[calc(100vh-95px)] max-w-[420px] min-w-[420px] flex flex-col gap-2 m-2">
-      <div className=" bg-white/10 p-2 rounded-lg">
-        <div className="flex w-fit gap-5 items-center px-4 py-3 font-bold">
+      <div className=" bg-white/10 text-white/60 p-2 rounded-lg">
+        <NavLink
+          to={"/"}
+          className={({ isActive }) =>
+            ` ${
+              isActive
+                ? "flex w-fit gap-5 items-center text-white px-4 py-3 font-bold"
+                : "flex w-fit gap-5 items-center px-4 py-3 font-bold"
+            }`
+          }
+        >
           <img src={assets.home_icon} alt="home icon" className="w-6" />
-          <NavLink to={"/"}>Home</NavLink>
-        </div>
-        <div className="flex w-fit gap-5 items-center px-4 py-3 font-bold">
+          <h2>Home</h2>
+        </NavLink>
+
+        <NavLink
+          to={"/search"}
+          className={({ isActive }) =>
+            ` ${
+              isActive
+                ? "flex w-fit gap-5 items-center text-white px-4 py-3 font-bold"
+                : "flex w-fit gap-5 items-center px-4 py-3 font-bold"
+            }`
+          }
+        >
           <img src={assets.search_icon} alt="search icon" className="w-6" />
           <h2>Search</h2>
-        </div>
+        </NavLink>
       </div>
 
       <div className="h-full flex flex-col bg-white/10 p-2 rounded-lg w-full">

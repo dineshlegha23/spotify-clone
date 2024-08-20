@@ -1,5 +1,5 @@
 import React from "react";
-import { assets } from "../assets/assets";
+import { assets, songsData } from "../assets/assets";
 import SongsList from "./SongsList";
 
 const AlbumSongsContainer = () => {
@@ -27,12 +27,21 @@ const AlbumSongsContainer = () => {
         <img src={assets.clock_icon} className="w-4 ml-2" alt="clock icon" />
       </div>
 
-      <SongsList />
-      <SongsList />
-      <SongsList />
-      <SongsList />
-      <SongsList />
-      <SongsList />
+      {songsData.map((song, index) => {
+        return (
+          <SongsList
+            key={song.id}
+            id={song.id}
+            index={index + 1}
+            name={song.name}
+            image={song.image}
+            duration={song.duration}
+            singers={song.singers}
+            album={song.album}
+            file={song.file}
+          />
+        );
+      })}
     </div>
   );
 };
