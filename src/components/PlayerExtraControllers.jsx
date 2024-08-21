@@ -11,7 +11,7 @@ const PlayerExtraControllers = () => {
       <div className="flex items-center gap-2">
         <img src={assets.volume_icon} className="w-4 h-fit" alt="volumme" />
         <div className="w-[93px] h-1 bg-zinc-700 rounded-sm">
-          <div className="w-[50%] bg-white h-full rounded-sm"></div>
+          <div className="w-[100%] bg-white h-full rounded-sm"></div>
         </div>
       </div>
       <img

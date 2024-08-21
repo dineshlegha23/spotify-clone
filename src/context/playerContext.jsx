@@ -60,6 +60,7 @@ export const PlayerContextProvider = ({ children }) => {
     audioRef.current.currentTime =
       (e.nativeEvent.offsetX / seekBgRef.current.offsetWidth) *
       audioRef.current.duration;
+    audioRef.current.play();
   };
 
   useEffect(() => {
@@ -89,6 +90,16 @@ export const PlayerContextProvider = ({ children }) => {
     }, 1000);
     return () => clearInterval(interval);
   }, [isPlaying]);
+
+  useEffect(() => {
+    setIsPlaying(!audioRef.current.paused);
+    audioRef.current.onplay = () => {
+      setIsPlaying(true);
+    };
+    audioRef.current.onpause = () => {
+      setIsPlaying(false);
+    };
+  }, [audioRef?.current?.paused]);
 
   return (
     <PlayerContext.Provider
