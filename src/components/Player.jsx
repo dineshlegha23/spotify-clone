@@ -15,6 +15,7 @@ const Player = () => {
     time,
     seekBarRef,
     setSeekBar,
+    seekBgRef,
   } = usePlyerContext();
 
   const progressBar = Math.ceil(
@@ -73,12 +74,13 @@ const Player = () => {
           {time?.currentTime.minutes}:{time?.currentTime.seconds}
         </p>
         <div
+          ref={seekBgRef}
           onClick={(e) => setSeekBar(e)}
-          ref={seekBarRef}
-          className="w-[515px] bg-zinc-700 h-1 rounded-sm"
+          className="w-[515px] bg-zinc-700 h-1 rounded-sm cursor-pointer"
         >
           <div
-            style={{ width: `${progressBar}%` }}
+            ref={seekBarRef}
+            style={{ width: `${progressBar || 0}%` }}
             className="bg-white h-full rounded-sm"
           ></div>
         </div>

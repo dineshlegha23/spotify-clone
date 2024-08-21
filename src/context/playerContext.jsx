@@ -19,7 +19,7 @@ export const PlayerContextProvider = ({ children }) => {
 
   const audioRef = useRef();
   const seekBarRef = useRef();
-  console.log(seekBarRef);
+  const seekBgRef = useRef();
 
   const playSong = (file) => {
     audioRef.current.play();
@@ -57,7 +57,9 @@ export const PlayerContextProvider = ({ children }) => {
   };
 
   const setSeekBar = (e) => {
-    console.log(e);
+    audioRef.current.currentTime =
+      (e.nativeEvent.offsetX / seekBgRef.current.offsetWidth) *
+      audioRef.current.duration;
   };
 
   useEffect(() => {
@@ -102,6 +104,7 @@ export const PlayerContextProvider = ({ children }) => {
         playWithSource,
         seekBarRef,
         time,
+        seekBgRef,
         setSeekBar,
       }}
     >
