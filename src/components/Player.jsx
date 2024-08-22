@@ -23,7 +23,7 @@ const Player = () => {
   );
 
   return (
-    <section className="col-span-2 flex flex-col items-center justify-center gap-2 pt-1 pb-1 w-full">
+    <section className="col-span-2 flex flex-col items-center justify-center gap-2 pt-1 pb-1 w-full lg:col-span-8">
       <div className="flex gap-6 items-center justify-center h-fit">
         <img
           src={assets.shuffle_icon}
@@ -69,7 +69,7 @@ const Player = () => {
         />
       </div>
 
-      <div className="flex items-center gap-2 text-xs text-white/70 font-semibold">
+      <div className="flex items-center gap-2 text-xs text-white/70 font-semibold xl:w-[80%]">
         <p className="max-w-5">
           {time?.currentTime.minutes}:{time?.currentTime.seconds}
         </p>

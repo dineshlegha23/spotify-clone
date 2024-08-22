@@ -1,7 +1,7 @@
 import MainSection from "./components/MainSection";
+import MobileMenu from "./components/MobileMenu";
 import PlayerBar from "./components/PlayerBar";
 import Sidebar from "./components/Sidebar";
-import { usePlyerContext } from "./context/playerContext";
 
 function App() {
   return (
@@ -11,6 +11,7 @@ function App() {
         <MainSection />
       </div>
       <PlayerBar />
+      <MobileMenu />
     </>
   );
 }

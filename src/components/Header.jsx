@@ -28,7 +28,7 @@ const Header = () => {
           />
         </div>
         <div className="flex gap-2">
-          <button className="bg-white text-black rounded-full px-4 py-1">
+          <button className="bg-white text-black rounded-full px-4 py-1 sm:hidden">
             Explore Premium
           </button>
 
