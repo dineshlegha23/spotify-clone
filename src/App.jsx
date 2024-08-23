@@ -4,8 +4,10 @@ import MobileMenu from "./components/MobileMenu";
 import MobileMiniPlayer from "./components/MobileMiniPlayer";
 import PlayerBar from "./components/PlayerBar";
 import Sidebar from "./components/Sidebar";
+import { usePlyerContext } from "./context/playerContext";
 
 function App() {
+  const { isMobilePlayerOpen } = usePlyerContext();
   return (
     <>
       <div className="text-white flex cursor-default">
@@ -14,7 +16,7 @@ function App() {
       </div>
       <PlayerBar />
       <MobileMiniPlayer />
-      {/* <MobileFullPlayer /> */}
+      {isMobilePlayerOpen && <MobileFullPlayer />}
       <MobileMenu />
     </>
   );

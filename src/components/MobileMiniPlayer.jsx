@@ -3,10 +3,14 @@ import { usePlyerContext } from "../context/playerContext";
 import { assets } from "../assets/assets";
 
 const MobileMiniPlayer = () => {
-  const { currentSong, playSong, pauseSong, isPlaying } = usePlyerContext();
+  const { currentSong, playSong, pauseSong, isPlaying, setIsMobilePlayerOpen } =
+    usePlyerContext();
 
   return (
-    <div className="hidden fixed bottom-[68.6px] items-center md:flex justify-between bg-[#102850] text-white py-[8px] px-[6px] w-[98%] mx-[6px] rounded-lg">
+    <div
+      onClick={() => setIsMobilePlayerOpen(true)}
+      className="hidden fixed bottom-[68.6px] items-center md:flex justify-between bg-[#102850] text-white py-[8px] px-[6px] w-[98%] mx-[6px] rounded-lg"
+    >
       <div className="flex gap-2">
         <img
           src={currentSong.image}

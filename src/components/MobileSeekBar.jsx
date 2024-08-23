@@ -5,9 +5,12 @@ const SeekBar = ({
   seekBarRef,
   seekBgRef,
   setSeekBar,
-  progressBar,
   currentSong,
+  audioRef,
 }) => {
+  const progressBar = Math.ceil(
+    (audioRef?.current?.currentTime / audioRef?.current?.duration) * 100
+  );
   return (
     <div className="flex items-center flex-col gap-1 text-xs text-white/70 font-semibold">
       <div

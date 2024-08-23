@@ -6,6 +6,7 @@ export const PlayerContext = createContext();
 export const PlayerContextProvider = ({ children }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentSong, setCurrentSong] = useState(songsData[0]);
+  const [isMobilePlayerOpen, setIsMobilePlayerOpen] = useState(false);
   const [time, setTime] = useState({
     currentTime: {
       minutes: 0,
@@ -117,6 +118,8 @@ export const PlayerContextProvider = ({ children }) => {
         time,
         seekBgRef,
         setSeekBar,
+        isMobilePlayerOpen,
+        setIsMobilePlayerOpen,
       }}
     >
       {children}
