@@ -6,10 +6,10 @@ const MusicPodcast = () => {
       <button className="bg-white text-black rounded-full px-3 py-1 pb-[8px]">
         All
       </button>
-      <button className="bg-zinc-700 text-white rounded-full px-3 py-1 pb-[8px]">
+      <button className="bg-zinc-800 text-white rounded-full px-3 py-1 pb-[8px]">
         Music
       </button>
-      <button className="bg-zinc-700 text-white rounded-full px-3 py-1 pb-[8px]">
+      <button className="bg-zinc-800 text-white rounded-full px-3 py-1 pb-[8px]">
         Podcasts
       </button>
     </div>

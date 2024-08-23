@@ -9,11 +9,11 @@ const SingleAlbum = ({ image, text, id }) => {
     <div className="flex flex-col gap-3">
       <img
         src={image}
-        className="w-[155px] h-[155px] sm:w-[130px] sm:h-[130px] rounded-lg"
+        className="w-[155px] h-[155px] sm:h-[160px] sm:w-[300px] rounded-lg"
         alt=""
         onClick={() => navigate(`/playlist/${id}`)}
       />
-      <p className="font-semibold max-w-[160px] min-w-[160px] text-white sm:min-w-[130px]">
+      <p className="font-semibold max-w-[160px] min-w-[160px] sm:w-[280px] text-white sm:min-w-[130px]">
         {text}
       </p>
     </div>
