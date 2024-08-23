@@ -1,4 +1,5 @@
 import MainSection from "./components/MainSection";
+import MobileFullPlayer from "./components/MobileFullPlayer";
 import MobileMenu from "./components/MobileMenu";
 import MobileMiniPlayer from "./components/MobileMiniPlayer";
 import PlayerBar from "./components/PlayerBar";
@@ -13,6 +14,7 @@ function App() {
       </div>
       <PlayerBar />
       <MobileMiniPlayer />
+      {/* <MobileFullPlayer /> */}
       <MobileMenu />
     </>
   );

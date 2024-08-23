@@ -3,7 +3,7 @@ import { assets } from "../assets/assets";
 
 const MobileMenu = () => {
   return (
-    <div className="hidden md:flex sticky bottom-0 px-[5vw] py-3 text-xs text-zinc-400 bg-black w-full justify-between">
+    <div className="hidden md:flex fixed bottom-0 px-[5vw] py-3 text-xs text-zinc-400 bg-black w-full justify-between">
       <button className="flex flex-col gap-1 items-center">
         <img src={assets.home_icon} alt="home icon" className="w-6" />
         <p>Home</p>

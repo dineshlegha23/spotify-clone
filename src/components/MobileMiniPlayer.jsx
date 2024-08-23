@@ -6,7 +6,7 @@ const MobileMiniPlayer = () => {
   const { currentSong, playSong, pauseSong, isPlaying } = usePlyerContext();
 
   return (
-    <div className="hidden fixed bottom-[66px] items-center sm:flex justify-between bg-[#102850] text-white py-[8px] px-[6px] w-[98%] mx-1 rounded-lg">
+    <div className="hidden fixed bottom-[68.6px] items-center md:flex justify-between bg-[#102850] text-white py-[8px] px-[6px] w-[98%] mx-[6px] rounded-lg">
       <div className="flex gap-2">
         <img
           src={currentSong.image}
@@ -15,11 +15,11 @@ const MobileMiniPlayer = () => {
         />
         <div className="text-sm">
           <h3 className="font-semibold">{currentSong.name}</h3>
-          <p>{currentSong.singers}</p>
+          <p className="text-xs">{currentSong.singers}</p>
         </div>
       </div>
       <div>
-        <div className="flex gap-5 items-center mr-3">
+        <div className="flex gap-5 items-center pr-3">
           <img src={assets.like_icon} className="w-5" alt="like icon" />
           {isPlaying ? (
             <img
