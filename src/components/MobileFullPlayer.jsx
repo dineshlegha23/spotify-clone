@@ -18,6 +18,8 @@ const MobileFullPlayer = () => {
     isPlaying,
     playSong,
     pauseSong,
+    playPrevious,
+    playNext,
     setIsMobilePlayerOpen,
   } = usePlyerContext();
   return (
@@ -62,6 +64,8 @@ const MobileFullPlayer = () => {
           playSong={playSong}
           pauseSong={pauseSong}
           isPlaying={isPlaying}
+          playNext={playNext}
+          playPrevious={playPrevious}
         />
 
         <div className="flex justify-between items-center mt-8">
