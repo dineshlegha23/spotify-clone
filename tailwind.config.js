@@ -2,7 +2,25 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        showHide: "showHide 0.3s ease-in-out",
+      },
+
+      keyframes: {
+        showHide: {
+          "0%": {
+            opacity: 0,
+            marginTop: "1000px",
+          },
+          "100%": {
+            opacity: 1,
+            marginTop: "0",
+            height: "100%",
+          },
+        },
+      },
+    },
     screens: {
       "2xl": { max: "1440px" },
       xl: { max: "1250px" },

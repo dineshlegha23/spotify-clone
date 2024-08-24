@@ -6,10 +6,10 @@ const SingleAlbum = ({ image, text, id }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3 hover:bg-zinc-800 p-2 rounded-lg">
       <img
         src={image}
-        className="w-[155px] h-[155px] sm:h-[160px] sm:w-[300px] rounded-lg"
+        className="w-[155px] h-[155px] mx-auto sm:h-[160px] sm:w-[300px] rounded-lg"
         alt=""
         onClick={() => navigate(`/playlist/${id}`)}
       />

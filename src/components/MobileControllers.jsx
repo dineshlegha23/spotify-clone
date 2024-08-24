@@ -5,7 +5,7 @@ const MobileControllers = ({ isPlaying, playSong, pauseSong }) => {
   return (
     <div className="flex justify-between items-center mt-8">
       <img src={assets.shuffle_icon} className="w-6" alt="shuffle icon" />
-      <div className="flex gap-[10vw] items-center">
+      <div className="flex gap-[8vw] items-center">
         <img src={assets.prev_icon} className="w-7" alt="prev icon" />
         <div
           onClick={isPlaying ? pauseSong : playSong}

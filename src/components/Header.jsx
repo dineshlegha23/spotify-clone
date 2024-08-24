@@ -32,7 +32,7 @@ const Header = () => {
             Explore Premium
           </button>
 
-          <button className="flex items-center gap-1 bg-black/70 rounded-full px-3 py-1">
+          <button className="flex items-center gap-1 bg-black/70 rounded-full px-3 py-1 [@media(max-width:350px)]:hidden">
             <img
               src={assets.arrow_icon}
               className="rotate-90 w-4 border border-white rounded-full p-1"

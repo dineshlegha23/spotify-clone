@@ -4,7 +4,7 @@ import SongsList from "./SongsList";
 
 const AlbumSongsContainer = () => {
   return (
-    <div className="sticky mt-5 pb-5 pt-5 bg-black/50 h-full px-5 md:px-2 py-3 -m-[18px]">
+    <div className="sticky mt-5 pb-5 pt-5 bg-black/50 h-full px-5 md:px-2 py-3 -m-[18px] md:pb-[70px]">
       <div className="flex gap-7 [@media(max-width:550px)]:mb-10 md:px-2">
         <img
           src={assets.play_icon}

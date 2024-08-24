@@ -21,8 +21,8 @@ const MobileFullPlayer = () => {
     setIsMobilePlayerOpen,
   } = usePlyerContext();
   return (
-    <section className="bg-blue-600 w-screen h-screen fixed flex flex-col top-0 z-10 px-6 text-white">
-      <div className="flex justify-between items-center pt-3">
+    <section className="animate-showHide bg-[#102850] w-screen h-screen fixed flex flex-col justify-between top-0 z-10 px-6 text-white">
+      <div className="flex justify-between items-center pt-2">
         <RiArrowDropDownLine
           onClick={() => setIsMobilePlayerOpen(false)}
           size={50}
@@ -32,8 +32,12 @@ const MobileFullPlayer = () => {
         <h4>Bollywood Central</h4>
         <BsThreeDots color="white" size={20} className="mr-2" />
       </div>
-      <div className="flex justify-center mt-9">
-        <img src={currentSong.image} className="w-[250px]" alt="song" />
+      <div className="flex justify-center mb-[400px] mt-2">
+        <img
+          src={currentSong.image}
+          className="h-[45vh] max-h-[50vh] w-[100vw] max-w-[400px]"
+          alt="song"
+        />
       </div>
 
       <div className="fixed bottom-4 w-screen pr-12">
