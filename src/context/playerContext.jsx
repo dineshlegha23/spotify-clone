@@ -7,6 +7,7 @@ export const PlayerContextProvider = ({ children }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentSong, setCurrentSong] = useState(songsData[0]);
   const [isMobilePlayerOpen, setIsMobilePlayerOpen] = useState(false);
+  const [playAll, setPlayAll] = useState(undefined);
   const [time, setTime] = useState({
     currentTime: {
       minutes: 0,
@@ -93,6 +94,23 @@ export const PlayerContextProvider = ({ children }) => {
   }, [isPlaying]);
 
   useEffect(() => {
+    if (audioRef.current.ended === true || false) {
+      playNext();
+      return;
+    }
+
+    if (playAll === undefined) {
+      return;
+    }
+
+    audioRef.current.src = songsData[0].file;
+    setCurrentSong(songsData[0]);
+    audioRef.current.play();
+    setIsPlaying(true);
+    return;
+  }, [playAll, audioRef?.current?.ended]);
+
+  useEffect(() => {
     setIsPlaying(!audioRef.current.paused);
     audioRef.current.onplay = () => {
       setIsPlaying(true);
@@ -100,6 +118,10 @@ export const PlayerContextProvider = ({ children }) => {
     audioRef.current.onpause = () => {
       setIsPlaying(false);
     };
+
+    // if (audioRef.current.ended) {
+    //   playNext();
+    // }
   }, [audioRef?.current?.paused]);
 
   return (
@@ -120,6 +142,8 @@ export const PlayerContextProvider = ({ children }) => {
         setSeekBar,
         isMobilePlayerOpen,
         setIsMobilePlayerOpen,
+        playAll,
+        setPlayAll,
       }}
     >
       {children}

@@ -42,7 +42,7 @@ const MobileFullPlayer = () => {
         />
       </div>
 
-      <div className="fixed bottom-5 w-screen pr-12">
+      <div className="fixed bottom-5 sm:bottom-0 w-screen pr-12">
         <div className="mt-5 flex justify-between items-center mb-8">
           <div>
             <h2 className="font-bold text-2xl">{currentSong.name}</h2>
@@ -68,7 +68,7 @@ const MobileFullPlayer = () => {
           playPrevious={playPrevious}
         />
 
-        <div className="flex justify-between items-center mt-24">
+        <div className="flex justify-between items-center mt-16 mb-4">
           <img src={assets.speaker_icon} className="w-4" alt="speaker icon" />
           <GoShareAndroid size={20} className="-mr-2" />
         </div>

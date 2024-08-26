@@ -1,14 +1,17 @@
 import React from "react";
 import { assets, songsData } from "../assets/assets";
 import SongsList from "./SongsList";
+import { usePlyerContext } from "../context/playerContext";
 
 const AlbumSongsContainer = () => {
+  const { playAll, setPlayAll } = usePlyerContext();
   return (
     <div className="sticky mt-5 pb-5 pt-5 bg-black/50 h-full px-5 md:px-2 py-3 -m-[18px] md:pb-[70px]">
       <div className="flex gap-7 [@media(max-width:550px)]:mb-10 md:px-2">
         <img
+          onClick={() => setPlayAll(new Date().getMilliseconds())}
           src={assets.play_icon}
-          className="w-14 bg-green-500 rounded-full p-4"
+          className="w-14 bg-green-500 rounded-full p-4 cursor-pointer"
           alt="play"
         />
         <img
