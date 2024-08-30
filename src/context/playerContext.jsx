@@ -23,7 +23,7 @@ export const PlayerContextProvider = ({ children }) => {
   const seekBarRef = useRef();
   const seekBgRef = useRef();
 
-  const playSong = (file) => {
+  const playSong = () => {
     audioRef.current.play();
     setIsPlaying(true);
   };
@@ -33,10 +33,10 @@ export const PlayerContextProvider = ({ children }) => {
     setIsPlaying(false);
   };
 
-  const playWithSource = (id, file) => {
+  const playWithSource = (currentPlayingSong, file) => {
     audioRef.current.src = file;
     audioRef.current.play();
-    setCurrentSong(songsData[id]);
+    setCurrentSong(currentPlayingSong);
     setIsPlaying(true);
   };
 
@@ -94,20 +94,23 @@ export const PlayerContextProvider = ({ children }) => {
   }, [isPlaying]);
 
   useEffect(() => {
-    if (audioRef.current.ended === true || false) {
-      playNext();
+    if (!currentSong?.desc) {
+      if (audioRef.current.ended === true || false) {
+        playNext();
+        return;
+      }
+
+      if (playAll === undefined) {
+        return;
+      }
+
+      audioRef.current.src = songsData[0].file;
+      setCurrentSong(songsData[0]);
+      audioRef.current.play();
+      setIsPlaying(true);
+    } else {
       return;
     }
-
-    if (playAll === undefined) {
-      return;
-    }
-
-    audioRef.current.src = songsData[0].file;
-    setCurrentSong(songsData[0]);
-    audioRef.current.play();
-    setIsPlaying(true);
-    return;
   }, [playAll, audioRef?.current?.ended]);
 
   useEffect(() => {

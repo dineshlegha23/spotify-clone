@@ -1,22 +1,21 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { usePlyerContext } from "../context/playerContext";
 
-const SingleAlbum = ({ image, text, id }) => {
-  const navigate = useNavigate();
-
+const SingleSong = (song) => {
+  const { playWithSource } = usePlyerContext();
   return (
     <div className="flex flex-col gap-3 hover:bg-zinc-800 p-2 rounded-lg">
       <img
-        src={image}
+        src={song.image}
         className="w-[155px] h-[155px] mx-auto sm:h-[160px] sm:w-[300px] rounded-lg"
         alt=""
-        onClick={() => navigate(`/playlist/${id}`)}
+        onClick={() => playWithSource(song, song.file)}
       />
       <p className="font-semibold max-w-[160px] min-w-[160px] sm:w-[280px] text-white sm:min-w-[130px]">
-        {text}
+        {song.name}
       </p>
     </div>
   );
 };
 
-export default SingleAlbum;
+export default SingleSong;
