@@ -81,6 +81,8 @@ export const PlayerContextProvider = ({ children }) => {
       return;
     }
 
+    console.log(songsIndex.indexOf(currentSong._id));
+
     audioRef.current.src = songs[songsIndex.indexOf(currentSong._id) + 1].file;
     audioRef.current.play();
     setCurrentSong(songs[songsIndex.indexOf(currentSong._id) + 1]);

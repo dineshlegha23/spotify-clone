@@ -3,7 +3,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { usePlyerContext } from "../context/playerContext";
 
 const SongsList = ({
-  id,
+  _id,
   index,
   image,
   name,
@@ -19,7 +19,7 @@ const SongsList = ({
     <div
       onClick={() => {
         playWithSource(songs, {
-          id,
+          _id,
           file,
           name,
           singers,

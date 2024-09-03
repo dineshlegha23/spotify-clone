@@ -35,7 +35,7 @@ const AlbumSongsContainer = ({ songs }) => {
           return (
             <SongsList
               key={song._id}
-              id={song._id}
+              _id={song._id}
               index={index + 1}
               name={song.name}
               image={song.image}
