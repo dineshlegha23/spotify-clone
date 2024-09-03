@@ -1,15 +1,15 @@
 import React from "react";
-import { assets, songsData } from "../assets/assets";
+import { assets } from "../assets/assets";
 import SongsList from "./SongsList";
 import { usePlyerContext } from "../context/playerContext";
 
-const AlbumSongsContainer = () => {
-  const { playAll, setPlayAll } = usePlyerContext();
+const AlbumSongsContainer = ({ songs }) => {
+  const { playAll } = usePlyerContext();
   return (
     <div className="sticky mt-5 pb-5 pt-5 bg-black/50 h-full px-5 md:px-2 py-3 -m-[18px] md:pb-[70px]">
       <div className="flex gap-7 [@media(max-width:550px)]:mb-10 md:px-2">
         <img
-          onClick={() => setPlayAll(new Date().getMilliseconds())}
+          onClick={() => playAll(songs)}
           src={assets.play_icon}
           className="w-14 bg-green-500 rounded-full p-4 cursor-pointer"
           alt="play"
@@ -30,21 +30,23 @@ const AlbumSongsContainer = () => {
         <img src={assets.clock_icon} className="w-4 ml-2" alt="clock icon" />
       </div>
 
-      {songsData.map((song, index) => {
-        return (
-          <SongsList
-            key={song.id}
-            id={song.id}
-            index={index + 1}
-            name={song.name}
-            image={song.image}
-            duration={song.duration}
-            singers={song.singers}
-            album={song.album}
-            file={song.file}
-          />
-        );
-      })}
+      {songs &&
+        songs.map((song, index) => {
+          return (
+            <SongsList
+              key={song._id}
+              id={song._id}
+              index={index + 1}
+              name={song.name}
+              image={song.image}
+              duration={song.duration}
+              singers={song.singers}
+              album={song.album}
+              file={song.file}
+              songs={songs}
+            />
+          );
+        })}
     </div>
   );
 };

@@ -13,13 +13,13 @@ const MobileMiniPlayer = () => {
         className="flex gap-2 w-full"
       >
         <img
-          src={currentSong.image}
+          src={currentSong?.image}
           className="w-10 rounded-md"
           alt="song image"
         />
         <div className="text-sm">
-          <h3 className="font-semibold">{currentSong.name}</h3>
-          <p className="text-xs">{currentSong.singers}</p>
+          <h3 className="font-semibold">{currentSong?.name}</h3>
+          <p className="text-xs">{currentSong?.singers}</p>
         </div>
       </div>
       <div className="w-[75px] pr-10">

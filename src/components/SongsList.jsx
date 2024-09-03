@@ -12,11 +12,23 @@ const SongsList = ({
   date,
   duration,
   file,
+  songs,
 }) => {
-  const { playWithSource } = usePlyerContext();
+  const { playWithSource, setSongs } = usePlyerContext();
   return (
     <div
-      onClick={() => playWithSource(id, file)}
+      onClick={() => {
+        playWithSource(songs, {
+          id,
+          file,
+          name,
+          singers,
+          album,
+          duration,
+          image,
+          date,
+        });
+      }}
       className="grid grid-cols-[50px_1.15fr_0.8fr_0.8fr_70px] xl:grid-cols-[50px_1fr_0.5fr_70px] [@media(max-width:550px)]:flex justify-between items-center mt-2 text-sm font-semibold text-zinc-400 py-2 cursor-pointer hover:bg-zinc-800 hover:rounded-lg [@media(max-width:550px)]:px-3"
     >
       <p className="text-center text-base text-white [@media(max-width:550px)]:hidden">

@@ -4,10 +4,13 @@ import { songsData } from "../assets/assets";
 export const PlayerContext = createContext();
 
 export const PlayerContextProvider = ({ children }) => {
+  const [homePageSongs, setHomePageSongs] = useState();
+  const [songs, setSongs] = useState();
+  const [albums, setAlbbums] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentSong, setCurrentSong] = useState(songsData[0]);
   const [isMobilePlayerOpen, setIsMobilePlayerOpen] = useState(false);
-  const [playAll, setPlayAll] = useState(undefined);
+  const [songsIndex, setSongsIndex] = useState();
   const [time, setTime] = useState({
     currentTime: {
       minutes: 0,
@@ -18,6 +21,7 @@ export const PlayerContextProvider = ({ children }) => {
       seconds: 0,
     },
   });
+  const [currentPlaylist, setCurrentPlaylist] = useState([]);
 
   const audioRef = useRef();
   const seekBarRef = useRef();
@@ -33,29 +37,53 @@ export const PlayerContextProvider = ({ children }) => {
     setIsPlaying(false);
   };
 
-  const playWithSource = (currentPlayingSong, file) => {
-    audioRef.current.src = file;
+  const playWithSource = (albumSongs, currentPlayingSong) => {
+    // if (songsIndex.indexOf(currentSong._id) + 1 === songsIndex.length) {
+    //   return;
+    // }
+    // if (songsIndex.indexOf(currentSong._id) === 0) {
+    //   return;
+    // }
+    if (albumSongs !== songs) {
+      setSongsIndex(albumSongs.map((song) => song._id));
+    }
+
+    audioRef.current.src = currentPlayingSong.file;
     audioRef.current.play();
+
     setCurrentSong(currentPlayingSong);
     setIsPlaying(true);
+    setSongs(albumSongs);
+  };
+
+  const playHomePageSongs = (currentPlayingSong) => {
+    audioRef.current.src = currentPlayingSong.file;
+    audioRef.current.play();
+
+    setCurrentSong(currentPlayingSong);
+    setIsPlaying(true);
+    setSongs(homePageSongs);
+    setSongsIndex(homePageSongs.map((song) => song._id));
   };
 
   const playPrevious = () => {
-    if (currentSong.id == 0) {
+    if (songsIndex.indexOf(currentSong._id) === 0) {
       return;
     }
-    audioRef.current.src = songsData[currentSong.id - 1].file;
+
+    audioRef.current.src = songs[songsIndex.indexOf(currentSong._id) - 1].file;
     audioRef.current.play();
-    setCurrentSong(songsData[currentSong.id - 1]);
+    setCurrentSong(songs[songsIndex.indexOf(currentSong._id) - 1]);
   };
 
   const playNext = () => {
-    if (songsData.length <= currentSong.id + 1) {
+    if (songsIndex.indexOf(currentSong._id) + 1 === songsIndex.length) {
       return;
     }
-    audioRef.current.src = songsData[currentSong.id + 1].file;
+
+    audioRef.current.src = songs[songsIndex.indexOf(currentSong._id) + 1].file;
     audioRef.current.play();
-    setCurrentSong(songsData[currentSong.id + 1]);
+    setCurrentSong(songs[songsIndex.indexOf(currentSong._id) + 1]);
   };
 
   const setSeekBar = (e) => {
@@ -65,8 +93,40 @@ export const PlayerContextProvider = ({ children }) => {
     audioRef.current.play();
   };
 
+  const fetchSongs = async () => {
+    const response = await fetch("http://localhost:5000/api/v1/songs");
+    const data = await response.json();
+    setHomePageSongs(data.data);
+    console.log(data.data);
+    audioRef.current.src = data.data[0].file;
+    setCurrentSong(data.data[0]);
+
+    setCurrentPlaylist(
+      data.data.map((song) => {
+        return { id: song._id, file: song.file };
+      })
+    );
+    setSongsIndex(data.data.map((song) => song._id));
+  };
+
+  const fetchAlbums = async () => {
+    const response = await fetch("http://localhost:5000/api/v1/albums");
+    const data = await response.json();
+    setAlbbums(data.data);
+    console.log(data.data);
+  };
+
+  const playAll = (songs) => {
+    setSongs(songs);
+    setSongsIndex(songs.map((song) => song._id));
+    setCurrentSong(songs[0]);
+    audioRef.current.src = songs[0].file;
+    audioRef.current.play();
+  };
+
   useEffect(() => {
-    audioRef.current.src = songsData[0].file;
+    fetchSongs();
+    fetchAlbums();
   }, []);
 
   useEffect(() => {
@@ -94,26 +154,6 @@ export const PlayerContextProvider = ({ children }) => {
   }, [isPlaying]);
 
   useEffect(() => {
-    if (!currentSong?.desc) {
-      if (audioRef.current.ended === true || false) {
-        playNext();
-        return;
-      }
-
-      if (playAll === undefined) {
-        return;
-      }
-
-      audioRef.current.src = songsData[0].file;
-      setCurrentSong(songsData[0]);
-      audioRef.current.play();
-      setIsPlaying(true);
-    } else {
-      return;
-    }
-  }, [playAll, audioRef?.current?.ended]);
-
-  useEffect(() => {
     setIsPlaying(!audioRef.current.paused);
     audioRef.current.onplay = () => {
       setIsPlaying(true);
@@ -122,15 +162,19 @@ export const PlayerContextProvider = ({ children }) => {
       setIsPlaying(false);
     };
 
-    // if (audioRef.current.ended) {
-    //   playNext();
-    // }
+    if (audioRef.current.ended) {
+      playNext();
+    }
   }, [audioRef?.current?.paused]);
 
   return (
     <PlayerContext.Provider
       value={{
         audioRef,
+        songs,
+        setSongs,
+        homePageSongs,
+        albums,
         playSong,
         playPrevious,
         playNext,
@@ -146,7 +190,8 @@ export const PlayerContextProvider = ({ children }) => {
         isMobilePlayerOpen,
         setIsMobilePlayerOpen,
         playAll,
-        setPlayAll,
+        setCurrentPlaylist,
+        playHomePageSongs,
       }}
     >
       {children}
