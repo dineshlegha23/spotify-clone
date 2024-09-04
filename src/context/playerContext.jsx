@@ -81,8 +81,6 @@ export const PlayerContextProvider = ({ children }) => {
       return;
     }
 
-    console.log(songsIndex.indexOf(currentSong._id));
-
     audioRef.current.src = songs[songsIndex.indexOf(currentSong._id) + 1].file;
     audioRef.current.play();
     setCurrentSong(songs[songsIndex.indexOf(currentSong._id) + 1]);
@@ -99,7 +97,6 @@ export const PlayerContextProvider = ({ children }) => {
     const response = await fetch("http://localhost:5000/api/v1/songs");
     const data = await response.json();
     setHomePageSongs(data.data);
-    console.log(data.data);
     audioRef.current.src = data.data[0].file;
     setCurrentSong(data.data[0]);
 
@@ -115,7 +112,6 @@ export const PlayerContextProvider = ({ children }) => {
     const response = await fetch("http://localhost:5000/api/v1/albums");
     const data = await response.json();
     setAlbbums(data.data);
-    console.log(data.data);
   };
 
   const playAll = (songs) => {
