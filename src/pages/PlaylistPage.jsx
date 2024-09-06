@@ -8,7 +8,9 @@ const PlaylistPage = () => {
   const [albumData, setAlbumData] = useState();
 
   const fetchSingleAlbum = async () => {
-    const response = await fetch(`http://localhost:5000/api/v1/albums/${id}`);
+    const response = await fetch(
+      `https://spotif-backend.onrender.com/api/v1/albums/${id}`
+    );
     const data = await response.json();
     setAlbumData(data.album);
   };

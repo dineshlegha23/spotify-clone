@@ -94,7 +94,9 @@ export const PlayerContextProvider = ({ children }) => {
   };
 
   const fetchSongs = async () => {
-    const response = await fetch("http://localhost:5000/api/v1/songs");
+    const response = await fetch(
+      "https://spotif-backend.onrender.com/api/v1/songs"
+    );
     const data = await response.json();
     setHomePageSongs(data.data);
     audioRef.current.src = data.data[0].file;
@@ -109,7 +111,9 @@ export const PlayerContextProvider = ({ children }) => {
   };
 
   const fetchAlbums = async () => {
-    const response = await fetch("http://localhost:5000/api/v1/albums");
+    const response = await fetch(
+      "https://spotif-backend.onrender.com/api/v1/albums"
+    );
     const data = await response.json();
     setAlbbums(data.data);
   };
